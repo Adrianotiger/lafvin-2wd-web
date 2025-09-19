@@ -2,8 +2,8 @@
 Drive the Lafvin robot over a webpage
 
 ## Install
-Download the Arduino code to the Lafvin robot:
-![Lafvin 2WD v2.0](image.png)
+Download the Arduino code to the Lafvin robot:  
+<img tag="Lafvin 2WD v2.0" src="image.png" style="height:10vw;" />
 
 ## How to play
 Open the webapp and connect the Lafvin robot with over the browser.
