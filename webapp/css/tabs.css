@@ -1,0 +1,33 @@
+.b_val
+{
+  font-size: 200%;
+}
+
+.beebot_button
+{
+  width:64px;
+  height:64px;
+  vertical-align:top;
+  margin:2px;
+  font-size:32px;
+  line-height:32px;
+}
+
+.beebot_button:hover
+{
+    background: white;
+}
+
+.beebot_reset
+{
+  float:left;
+  background:linear-gradient(to bottom, #fa6, #f73);
+  margin-left:5vw;
+}
+
+.beebot_start
+{
+  float: right;
+  background:linear-gradient(to bottom,#beb,#7b7);
+  margin-right:5vw;
+}

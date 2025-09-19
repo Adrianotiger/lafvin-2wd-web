@@ -1,0 +1,119 @@
+html 
+{
+  width: 100%;
+  height: 100%;
+}
+
+body 
+{
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  background: linear-gradient(to bottom, #ffe, #fec);
+  margin: 0 auto;
+  text-align: center;
+}
+
+button
+{
+  font-size: 120%;
+  border-radius: 1vmin;
+  margin: 0 auto;
+  padding: 15px;
+  cursor: pointer;
+  margin-top: 10px;
+  border-style: none;
+  box-shadow: inset 2px 2px 0.1vmin #ddf, inset -2px -2px 0.1vmin #669, 0px 0px 1px 1px #000, 0px 0px 1px 2px #fff;
+  background: linear-gradient(to bottom, #dcf, #98e);
+}
+
+#connectionDiv
+{
+  position: absolute;
+  left: 1%;
+  width: 98%;
+  top: 1%;
+  height: 30vh;
+  border-radius: 1vmin;
+  margin: 0 auto;
+
+  box-shadow: inset 2px 2px 0.1vmin #ddf, inset -2px -2px 0.1vmin #669, 0px 0px 1px 0px #000;
+  background: linear-gradient(to bottom, #ddd, #aaa);
+  transition: all 0.5s ease-in-out;
+  overflow: hidden;
+}
+
+#connectionDiv table
+{
+    height: 15px;
+    line-height: 15px;
+    font-size: 20px;
+    width: 99%;
+    background: linear-gradient(to right, transparent 0%, #ddf 5%, #ddf 95%, transparent 100%);
+    margin:2px auto;
+    padding: 0px 100px;
+    color: blue;
+}
+
+#connectionDiv svg
+{
+    float: right;
+}
+
+.controlDiv
+{
+  position: absolute;
+  width: 98%;
+  height: 2vh;
+  left: 1%;
+  bottom: 10vh;
+  border-radius: 1vmin;
+  box-shadow: inset 2px 2px 0.1vmin #ddf, inset -2px -2px 0.1vmin #669, 0px 0px 1px 0px #000;
+  background: linear-gradient(to bottom, #ffd, #ffa);
+  transition: all 0.5s ease-in-out;
+  overflow-y: hidden;
+  z-index: 200;
+}
+
+.controlDiv img
+{
+  max-height: 5vh;
+}
+
+.controlDiv table
+{
+  width: 98%;
+  height: 70vh;
+  text-align: center;
+}
+
+.controlDiv table tr
+{
+  transition: all 0.3s linear;
+}
+
+.controlTab
+{
+  position: absolute;
+  width: 32vw;
+  height: 10vh;
+  left: 2%;
+  bottom: 1vh;
+  border-radius: 1vmin;
+  box-shadow: inset 2px 2px 0.1vmin #ddf, inset -2px -2px 0.1vmin #669, 0px 0px 1px 0px #000;
+  background: linear-gradient(to bottom, #dfd, #afa);
+  transition: all 0.2s ease-in-out;
+  line-height: 10vh;
+  font-weight: bolder;
+  font-size: 120%;
+  cursor: pointer;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.controlTab:hover 
+{
+  background: white;
+  text-shadow: 1px 1px 2px #000;
+  z-index:110;
+}
