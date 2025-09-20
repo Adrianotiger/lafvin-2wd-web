@@ -108,7 +108,10 @@ bool Lafvin2wd::hasLight(bool left)
 
 uint8_t Lafvin2wd::getLightIntensity(bool left)
 {
-  return (light[left?0:1].getmaxAnalogValue() - (uint16_t)light[left?0:1].getValue()) * 100 / light[left?0:1].getmaxAnalogValue();
+  uint16_t val = light[left?0:1].getValue();
+  uint16_t maxv = light[left?0:1].getmaxAnalogValue();
+  if(val > maxv) val = maxv;
+  return (maxv - val) * 100 / maxv;
 }
 
 bool Lafvin2wd::hasLine(bool left)

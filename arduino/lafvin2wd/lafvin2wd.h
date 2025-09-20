@@ -6,7 +6,7 @@
 class Sensor
 {
 private:
-  uint8_t _value;
+  uint16_t _value;
   bool    _changed;
   bool    _analog;
   bool    _analogLow;
@@ -14,12 +14,12 @@ private:
 public:
   Sensor() {}
   void setup(uint8_t pin, bool isAnalog) { pinMode(pin, INPUT); _pin=pin; _analog=isAnalog; _value=0; }
-  void measure() { _analogLow = false; if(_analog) setValue(analogRead(_pin) / 4); else setValue(digitalRead(_pin)); }
+  void measure() { _analogLow = false; if(_analog) setValue(analogRead(_pin)); else setValue(digitalRead(_pin)); }
   void measureLowRes() { _analogLow = true; if(_analog) setValue(analogRead(_pin) / 16); else setValue(digitalRead(_pin)); }
-  uint16_t getmaxAnalogValue() { return _analogLow ? 512/16 : 512/4; }
-  void setValue(uint8_t val) { if(val != _value) {_value=val; _changed=true;} }
+  uint16_t getmaxAnalogValue() { return _analogLow ? 512/16 : 512; }
+  void setValue(uint16_t val) { if(val != _value) {_value=val; _changed=true;} }
   bool isDetected() { return _changed; }
-  uint8_t getValue() { _changed = false; return _value; }
+  uint16_t getValue() { _changed = false; return _value; }
   void resetValue() { _value = 0; }
 };
 

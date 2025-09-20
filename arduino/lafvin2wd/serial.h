@@ -96,6 +96,12 @@ public:
     Serial.print("parse value: "); Serial.println(ret); 
     return ret;
   }
+
+  void printValue8(uint8_t val)
+  {
+    if(val < 0x10) Serial.print("0");
+    Serial.print(val, HEX);
+  }
 };
 
 

@@ -43,8 +43,7 @@ void loop_sensortest()
   {
     sensorVal = robo.getLightIntensity(readLeftSensor);
     Serial.print(readLeftSensor ? "$l" : "$L");
-    if(sensorVal < 0x10) Serial.print("0");
-    Serial.print(sensorVal, HEX);
+    ser.printValue8(sensorVal);
   }
   if(robo.hasLine(readLeftSensor))
   {
@@ -56,8 +55,7 @@ void loop_sensortest()
   {
     sensorVal = robo.getUltrasonic();
     Serial.print("$U");
-    if(sensorVal < 0x10) Serial.print("0");
-    Serial.print(sensorVal, HEX);
+    ser.printValue8(sensorVal);
   }
 
   Serial.println();
