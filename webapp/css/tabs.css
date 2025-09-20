@@ -1,16 +1,24 @@
 .b_val
 {
-  font-size: 200%;
+  font-size: 4vmin;
+}
+
+.b_val b
+{
+  display: block;
 }
 
 .beebot_button
 {
   width:64px;
   height:64px;
+  max-width: 8vw;
+  max-height: 8vw;
   vertical-align:top;
   margin:2px;
-  font-size:32px;
-  line-height:32px;
+  font-size: calc(min(32px, 4vw));
+  line-height: calc(min(32px, 4vw));
+  padding: 1vw;
 }
 
 .beebot_button:hover

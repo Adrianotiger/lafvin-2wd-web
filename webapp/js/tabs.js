@@ -11,7 +11,7 @@ class Tab
   {
     this.#name = name;
 
-    this.#tab = _CN("div", {class:"controlTab", style:`left:${1+globalTabs.length * 30}vw`}, [name], document.body);
+    this.#tab = _CN("div", {class:"controlTab", style:`left:${1+globalTabs.length * 30}vw`}, [_CN("table", {}, [_CN("tr", {}, [_CN("td", {}, [name])])])], document.body);
     this.#div = _CN("div", {class:"controlDiv"}, [], document.body);
 
     _CN("h2", {}, [name], this.#div);
@@ -37,7 +37,7 @@ class Tab
     });
 
     activeTab = this;
-    this.#div.style.height = "86vh";
+    this.#div.style.height = "86%";
     this.#div.style.zIndex = 205;
     this.#div.style.opacity = 1.0;
     console.log("Start " + this.#name + "...");

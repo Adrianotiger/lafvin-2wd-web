@@ -3,9 +3,9 @@ const beeBot = new class extends Tab
   #cmd = [];
   #cmddiv = null;
   #isExecuting = false;
-  #forwardTime = 0x380;
-  #rotateTime = 0x29a;
-  #speed = 0x30;
+  #forwardTime = null;
+  #rotateTime = null;
+  #speed = null;
   #playDiv = null;
 
   #commands = {
@@ -48,6 +48,33 @@ const beeBot = new class extends Tab
     });
 
     this.#cmddiv = _CN("div", {style:"background:#cc5;width:96%;height:30vh;margin:0 auto;"}, [], div);
+
+    let config = _CN("div", {style:"border-radius:2vh;width:90%;margin:0 auto;background:#ee0;"}, [_CN("h2", {style:"text-align:left;margin:5px;"}, ["⚙️"])], div);
+    let confF = _CN("span", {style:"width:25vw;display:inline-block;margin:2vw;"}, ["Forward time (ms): "], config);
+    let confR = _CN("span", {style:"width:25vw;display:inline-block;margin:2vw;"}, ["Rotate time (ms): "], config);
+    let confS = _CN("span", {style:"width:25vw;display:inline-block;margin:2vw;"}, ["Speed (%): "], config);
+
+    this.#forwardTime = _CN("input", {type:"range", value:1060, min:400, max:3000, step:20, style:"width:100%;"}, [], confF);
+    this.#forwardTime.addEventListener("input", (ev)=>{
+      confF.getElementsByTagName("b")[0].textContent = this.#forwardTime.value + " ms";
+    });
+    this.#rotateTime = _CN("input", {type:"range", value:800, min:400, max:3000, step:20, style:"width:100%;"}, [], confR);
+    this.#rotateTime.addEventListener("input", (ev)=>{
+      confR.getElementsByTagName("b")[0].textContent = this.#rotateTime.value + " ms";
+    });
+    this.#speed = _CN("input", {type:"range", value:70, min:20, max:100, step:2, style:"width:100%;"}, [], confS);
+    this.#speed.addEventListener("input", (ev)=>{
+      confS.getElementsByTagName("b")[0].textContent = this.#speed.value + " %";
+    });
+    _CN("b", {}, ["1060 ms"], confF);
+    _CN("b", {}, ["800 ms"], confR);
+    _CN("b", {}, ["70%"], confS);
+
+    setTimeout(()=>{
+      this.#forwardTime.value = 1060;
+      this.#rotateTime.value = 1000;
+      this.#speed.value = 70;
+    }, 200);
   }
 
   #stopExecuting()
@@ -68,17 +95,18 @@ const beeBot = new class extends Tab
 
     let str = ">" + this.#cmd[index].cmd;
     let timeout = 1000;
+    let speed = parseInt(this.#speed.value);
     if(this.#cmd[index].cmd === 'F' || this.#cmd[index].cmd === 'B')
     {
-      timeout = this.#forwardTime;
-      str += this.#forwardTime.toString(16).padStart(4, '0');
-      str += this.#speed.toString(16).padStart(2, '0');
+      timeout = parseInt(this.#forwardTime.value);
+      str += timeout.toString(16).padStart(4, '0');
+      str += speed.toString(16).padStart(2, '0');
     }
     else if(this.#cmd[index].cmd === 'L' || this.#cmd[index].cmd === 'R')
     {
-      timeout = this.#rotateTime;
-      str += this.#rotateTime.toString(16).padStart(4, '0');
-      str += this.#speed.toString(16).padStart(2, '0');
+      timeout = parseInt(this.#rotateTime.value);
+      str += timeout.toString(16).padStart(4, '0');
+      str += speed.toString(16).padStart(2, '0');
     }
     else
     {
@@ -89,12 +117,21 @@ const beeBot = new class extends Tab
 
     setTimeout(()=>{
       this.#executeProgram(index+1);
-    }, this.#rotateTime + 1000);
+    }, timeout + 500);
   }
 
   addCommand(cmd)
   {
     cmd.div = _CN("button", {style:"width:32px;height:32px;line-height:32px;background:#aaa;padding:0px;margin:1px;"}, [cmd.symbol], this.#cmddiv);
+    cmd.div.addEventListener("click", ()=>{
+      this.#cmd.forEach((c, i)=>{
+        if(c === cmd)
+        {
+          this.#cmddiv.removeChild(c.div);
+          this.#cmd.splice(i, 1);
+        } 
+      });
+    });
     this.#cmd.push(cmd);
   }
 

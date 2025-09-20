@@ -90,7 +90,7 @@ const sensorTest = new class extends Tab
         const td = this.#trs['l'].getElementsByTagName("td")[msg[1]==='l'?1:2];
         const b = this.#trs['l'].getElementsByTagName("b")[msg[1]==='l'?0:1];
         const light = Number.parseInt(msg.substring(2, 4), 16);
-        td.childNodes[0].textContent = ["🌑","🌒","🌓","🌔","🌕"][parseInt(light / 51)];
+        td.childNodes[0].textContent = ["🌑","🌒","🌓","🌔","🌕"][parseInt(light / 21)];
         b.textContent = light;
         
         break;
