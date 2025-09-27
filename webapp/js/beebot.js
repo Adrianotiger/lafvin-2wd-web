@@ -54,27 +54,25 @@ const beeBot = new class extends Tab
     let confR = _CN("span", {style:"width:25vw;display:inline-block;margin:2vw;"}, ["Rotate time (ms): "], config);
     let confS = _CN("span", {style:"width:25vw;display:inline-block;margin:2vw;"}, ["Speed (%): "], config);
 
-    this.#forwardTime = _CN("input", {type:"range", value:1060, min:400, max:3000, step:20, style:"width:100%;"}, [], confF);
+    this.#forwardTime = _CN("input", {type:"range", value:"1060", min:400, max:3000, step:20, style:"width:100%;"}, [], confF);
+    this.#forwardTime.value = 1060;
     this.#forwardTime.addEventListener("input", (ev)=>{
       confF.getElementsByTagName("b")[0].textContent = this.#forwardTime.value + " ms";
     });
-    this.#rotateTime = _CN("input", {type:"range", value:800, min:400, max:3000, step:20, style:"width:100%;"}, [], confR);
+    this.#rotateTime = _CN("input", {type:"range", value:"800", min:400, max:3000, step:20, style:"width:100%;"}, [], confR);
+    this.#rotateTime.value = 800;
     this.#rotateTime.addEventListener("input", (ev)=>{
       confR.getElementsByTagName("b")[0].textContent = this.#rotateTime.value + " ms";
     });
-    this.#speed = _CN("input", {type:"range", value:70, min:20, max:100, step:2, style:"width:100%;"}, [], confS);
+    this.#speed = _CN("input", {type:"range", value:"50", min:20, max:100, step:2, style:"width:100%;"}, [], confS);
+    this.#speed.value = 50;
     this.#speed.addEventListener("input", (ev)=>{
       confS.getElementsByTagName("b")[0].textContent = this.#speed.value + " %";
     });
-    _CN("b", {}, ["1060 ms"], confF);
-    _CN("b", {}, ["800 ms"], confR);
-    _CN("b", {}, ["70%"], confS);
-
-    setTimeout(()=>{
-      this.#forwardTime.value = 1060;
-      this.#rotateTime.value = 1000;
-      this.#speed.value = 70;
-    }, 200);
+    _CN("b", {}, [`${this.#forwardTime.value} ms`], confF);
+    _CN("b", {}, [`${this.#rotateTime.value} ms`], confR);
+    _CN("b", {}, [`${this.#speed.value} %`], confS);
+    
   }
 
   #stopExecuting()
